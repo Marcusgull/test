@@ -2,41 +2,54 @@ package test;
 
 import java.awt.*;
 
-public class Ball{
-    double xVel, yVel, x, y;
+public class Ball {
+
+    private double xVelocity, yVelocity;
+    private double xPosition, yPosition;
+
     public Ball() {
-        x = 350;
-        y = 250;
-        xVel = -1;
-        yVel = 1;
+        this.xPosition = 350;
+        this.yPosition = 250;
+        this.xVelocity = -1;
+        this.yVelocity = 1;
     }
 
     public void draw(Graphics g){
         g.setColor(Color.white);
-        g.fillOval((int)x-10,(int)y-10,20,20);
+        g.fillOval((int)xPosition-10,(int)yPosition-10,20,20);
     }
-    public void checkPaddlecollision(Paddle p1, Paddle p2) {
-        if (x <= 50){
-            if(y >= p1.getY() && y <= p1.getY() + 80)
-                xVel = -xVel;
-        } else if (x >= 650) {
-            if(y >= p2.getY() && y <= p2.getY() + 80)
-                xVel = -xVel;
+
+    public void checkPaddleCollision(Paddle paddlePlayer, Paddle paddleAI) {
+        if (xPosition <= 50) {
+            if (yPosition >= paddlePlayer.getY() && yPosition <= paddlePlayer.getY() + 80) {
+                xVelocity = -xVelocity;
+            }
+        }
+        else if (xPosition >= 650) {
+            if (yPosition >= paddleAI.getY() && yPosition <= paddleAI.getY() + 80) {
+                xVelocity = -xVelocity;
+            }
         }
     }
-    public void move() {
-        x+= xVel;
-        y+= yVel;
 
-        if(y < 10)
-            yVel = -yVel;
-        if(y > 490)
-            yVel = -yVel;
+    public void move() {
+        xPosition += xVelocity;
+        yPosition += yVelocity;
+
+        if (yPosition < 10) {
+            yVelocity = -yVelocity;
+        }
+
+        if (yPosition > 490) {
+            yVelocity = -yVelocity;
+        }
     }
+
     public int getX() {
-        return (int)x;
+        return (int)xPosition;
     }
+
     public int getY() {
-        return(int)y;
+        return(int)yPosition;
     }
 }
