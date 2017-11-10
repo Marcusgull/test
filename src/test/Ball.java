@@ -2,7 +2,7 @@ package test;
 
 import java.awt.*;
 
-public class Ball{
+public class Ball {
 
     private double xVelocity, yVelocity;
     private double xPosition, yPosition;
@@ -20,12 +20,15 @@ public class Ball{
     }
 
     public void checkPaddleCollision(Paddle paddlePlayer, Paddle paddleAI) {
-        if (xPosition <= 50){
-            if(yPosition >= paddlePlayer.getY() && yPosition <= paddlePlayer.getY() + 80)
+        if (xPosition <= 50) {
+            if (yPosition >= paddlePlayer.getY() && yPosition <= paddlePlayer.getY() + 80) {
                 xVelocity = -xVelocity;
-        } else if (xPosition >= 650) {
-            if(yPosition >= paddleAI.getY() && yPosition <= paddleAI.getY() + 80)
+            }
+        }
+        else if (xPosition >= 650) {
+            if (yPosition >= paddleAI.getY() && yPosition <= paddleAI.getY() + 80) {
                 xVelocity = -xVelocity;
+            }
         }
     }
 
@@ -33,10 +36,13 @@ public class Ball{
         xPosition += xVelocity;
         yPosition += yVelocity;
 
-        if(yPosition < 10)
+        if (yPosition < 10) {
             yVelocity = -yVelocity;
-        if(yPosition > 490)
+        }
+
+        if (yPosition > 490) {
             yVelocity = -yVelocity;
+        }
     }
 
     public int getX() {
