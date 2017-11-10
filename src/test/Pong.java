@@ -14,7 +14,6 @@ public class Pong extends Applet implements Runnable, KeyListener{
     private HumanPaddle paddlePlayer;
     private AIPaddle paddleAI;
 
-    // Skal det være mer enn en ball?
     private Ball ball;
 
 
@@ -29,26 +28,26 @@ public class Pong extends Applet implements Runnable, KeyListener{
         gameStarted = false;
 
         // Instantiate player, AI and ball
-        this.paddlePlayer = new HumanPaddle(1);
-        this.paddleAI = new AIPaddle(2, this.ball);
-        this.ball = new Ball();
+        paddlePlayer = new HumanPaddle(1);
+        paddleAI = new AIPaddle(2, ball);
+        ball = new Ball();
     }
 
     public void paint(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0,0,WIDTH,HEIGHT);
 
-        if(this.ball.getX() < -10 || this.ball.getX() > 710){
+        if(ball.getX() < -10 || ball.getX() > 710){
             g.setColor(Color.red);
             g.drawString("Game Over!", 350,250);
         } else {
-            this.ball.draw(g);
-            this.paddlePlayer.draw(g);
-            this.paddleAI.draw(g);
+            ball.draw(g);
+            paddlePlayer.draw(g);
+            paddleAI.draw(g);
         }
 
-        this.paddlePlayer.draw(g);
-        this.ball.draw(g);
+        paddlePlayer.draw(g);
+        ball.draw(g);
     }
 
     public void update(Graphics g) {
@@ -60,16 +59,16 @@ public class Pong extends Applet implements Runnable, KeyListener{
         // Main game-loop
         for(;;){
             if(gameStarted) {
-                this.paddlePlayer.move();
-                this.paddleAI.move();
-                this.ball.move();
-                this.ball.checkPaddlecollision(
-                        this.paddlePlayer,
-                        this.paddleAI
+                paddlePlayer.move();
+                paddleAI.move();
+                ball.move();
+                ball.checkPaddleCollision(
+                        paddlePlayer,
+                        paddleAI
                 );
             }
 
-            this.repaint();
+            repaint();
 
             try {
                 Thread.sleep(10);
@@ -82,10 +81,13 @@ public class Pong extends Applet implements Runnable, KeyListener{
 
     public void keyPressed(KeyEvent e) {
 
+        System.out.println("Key pressed");
+
         if(e.getKeyCode()== KeyEvent.VK_UP) {
-            this.paddlePlayer.setUpAccel(true);
+            System.out.println("VK_UP \n");
+            paddlePlayer.setUpAccel(true);
         } else if(e.getKeyCode()==KeyEvent.VK_DOWN){
-            this.paddlePlayer.setDownAccel(true);
+            paddlePlayer.setDownAccel(true);
         } else if (e.getKeyCode() == KeyEvent.VK_ENTER){
             gameStarted = true;
         }
@@ -95,9 +97,9 @@ public class Pong extends Applet implements Runnable, KeyListener{
     public void keyReleased(KeyEvent e) {
 
         if(e.getKeyCode()== KeyEvent.VK_UP) {
-            this.paddlePlayer.setUpAccel(false);
+            paddlePlayer.setUpAccel(false);
         } else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-            this.paddlePlayer.setDownAccel(true);
+            paddlePlayer.setDownAccel(true);
         }
 
     }
