@@ -37,10 +37,11 @@ public class Pong extends Applet implements Runnable, KeyListener{
         g.setColor(Color.black);
         g.fillRect(0,0,WIDTH,HEIGHT);
 
-        if(ball.getX() < -10 || ball.getX() > 710){
+        if (ball.getX() < -10 || ball.getX() > 710){
             g.setColor(Color.red);
             g.drawString("Game Over!", 350,250);
-        } else {
+        }
+        else {
             ball.draw(g);
             paddlePlayer.draw(g);
             paddleAI.draw(g);
@@ -58,7 +59,7 @@ public class Pong extends Applet implements Runnable, KeyListener{
     public void run() {
         // Main game-loop
         for(;;){
-            if(gameStarted) {
+            if (gameStarted) {
                 paddlePlayer.move();
                 paddleAI.move();
                 ball.move();
@@ -83,12 +84,14 @@ public class Pong extends Applet implements Runnable, KeyListener{
 
         System.out.println("Key pressed");
 
-        if(e.getKeyCode()== KeyEvent.VK_UP) {
+        if (e.getKeyCode()== KeyEvent.VK_UP) {
             System.out.println("VK_UP \n");
             paddlePlayer.setUpAccel(true);
-        } else if(e.getKeyCode()==KeyEvent.VK_DOWN){
+        }
+        else if (e.getKeyCode()==KeyEvent.VK_DOWN){
             paddlePlayer.setDownAccel(true);
-        } else if (e.getKeyCode() == KeyEvent.VK_ENTER){
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_ENTER){
             gameStarted = true;
         }
 
@@ -96,9 +99,10 @@ public class Pong extends Applet implements Runnable, KeyListener{
 
     public void keyReleased(KeyEvent e) {
 
-        if(e.getKeyCode()== KeyEvent.VK_UP) {
+        if (e.getKeyCode()== KeyEvent.VK_UP) {
             paddlePlayer.setUpAccel(false);
-        } else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+        }
+        else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
             paddlePlayer.setDownAccel(true);
         }
 
