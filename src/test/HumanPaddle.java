@@ -16,9 +16,11 @@ public class HumanPaddle implements Paddle {
     public HumanPaddle (int player){
         upAccel = false; downAccel = false;
         yPosition = 210; yVelocity = 0;
-        if(player == 1) {
+
+        if (player == 1) {
             xPosition = 20;
-        }else {
+        }
+        else {
             xPosition = 660;
         }
     }
@@ -29,7 +31,7 @@ public class HumanPaddle implements Paddle {
     }
 
     public void move() {
-        if(upAccel){
+        if (upAccel){
             yVelocity -= 2;
         }
         else if (downAccel){
